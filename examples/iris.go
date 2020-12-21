@@ -55,7 +55,6 @@ func main() {
 		defer interpreter.Delete()
 	}
 
-	interpreter.AllocateTensors()
 	status := interpreter.AllocateTensors()
 	if status != tflitego.TfLiteOk {
 		log.Println("allocate Tensors failed")
@@ -65,8 +64,6 @@ func main() {
 	newspecie := []float32{7.9, 3.8, 6.4, 2.0}
 	input, err := interpreter.GetInputTensor(0)
 	input.SetFloat32(newspecie)
-
-	interpreter.Invoke()
 
 	status = interpreter.Invoke()
 	if status != tflitego.TfLiteOk {

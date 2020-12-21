@@ -1,17 +1,12 @@
 # Examples for tflitego
 
+
 # how to use
 
 ```
-cd example 
+go get github.com/nbortolotti/gotflite
 
-(optional) go get 
-
-go build
-
-go iris.go
 ```
-
 
 ## Examples
 
@@ -20,3 +15,14 @@ go iris.go
 included: 
 * iris.go: all the example code to implement an inference using tflitego
 * iris_lite.tflite: tflite generic model to run the example. 
+
+
+```
+go build
+
+```
+
+```
+go run iris.go
+
+```
