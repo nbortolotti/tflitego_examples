@@ -16,6 +16,13 @@ included:
 * iris.go: all the example code to implement an inference using tflitego
 * iris_lite.tflite: tflite generic model to run the example. 
 
+---
+**Note:**
+
+remember to navigate into examples folder.
+
+---
+
 
 ```
 go build
