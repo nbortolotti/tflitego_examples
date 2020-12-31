@@ -4,7 +4,7 @@
 # how to use
 
 ```
-go get github.com/nbortolotti/gotflite
+go get github.com/nbortolotti/tflitego
 
 ```
 
