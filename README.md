@@ -24,12 +24,10 @@ remember to navigate into examples folder.
 ---
 
 
-```
+```shell script
 go build
-
 ```
 
-```
+```shell script
 go run iris.go
-
 ```
