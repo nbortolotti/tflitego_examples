@@ -32,7 +32,7 @@ func topSpecie(results []float32) string {
 }
 
 func main() {
-	model, err := tflitego.NewTFLiteModelFromFile("iris_lite.tflite")
+	model, err := tflite.NewModelFromFile("iris_lite.tflite")
 	defer model.Delete()
 	if err != nil {
 		if model == nil {
@@ -40,21 +40,21 @@ func main() {
 		}
 	}
 
-	options, err := tflitego.NewInterpreterOptions()
+	options, err := tflite.NewInterpreterOptions()
 	defer options.Delete()
 	if err != nil {
 		log.Fatal("cannot initialize interpreter options", err)
 	}
 	options.SetNumThread(4)
 
-	interpreter, err := tflitego.NewInterpreter(model, options)
+	interpreter, err := tflite.NewInterpreter(model, options)
 	defer interpreter.Delete()
 	if err != nil {
 		log.Fatal("cannot create interpreter", err)
 	}
 
 	status := interpreter.AllocateTensors()
-	if status != tflitego.TfLiteOk {
+	if status != tflite.StatusOk {
 		log.Println("allocate Tensors failed")
 	}
 
@@ -63,7 +63,7 @@ func main() {
 	input.SetFloat32(newspecie)
 
 	status = interpreter.Invoke()
-	if status != tflitego.TfLiteOk {
+	if status != tflite.StatusOk {
 		log.Println("invoke interpreter failed")
 	}
 
