@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/nbortolotti/tflitego"
+	tflite "github.com/nbortolotti/tflitego"
 )
 
 func main() {
@@ -12,7 +12,7 @@ func main() {
 
 func checkTFVersion() {
 
-	version, err := tflitego.TFVersion()
+	version, err := tflite.Version()
 	if err != nil {
 		fmt.Printf("Error with TF lite version: %s", err)
 	}
