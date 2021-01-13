@@ -3,9 +3,8 @@
 
 # how to use
 
-```
+```shell script
 go get github.com/nbortolotti/tflitego
-
 ```
 
 ## Examples
