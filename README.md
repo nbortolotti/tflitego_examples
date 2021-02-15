@@ -16,6 +16,17 @@ included:
 * iris.go: all the example code to implement an inference using tflitego
 * iris_lite.tflite: tflite generic model to run the example. 
 
+2. Image Categorization: this example propose inferences using images and with the objective to provide categorization or labeling.
+
+included: 
+* image.go:
+* image_test.go
+* images: folder with image placerholders.
+* models: folder with tf models.
+  * mobilenet_v1_1.0_224_quant.tflite
+  * mobilenet_v2_1.0_224_quant.tflite
+  * labels_mobilenet_224.txt
+
 ---
 **Note:**
 
