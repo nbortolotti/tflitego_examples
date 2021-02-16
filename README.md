@@ -32,6 +32,8 @@ included:
 
 Note: ioncluded a **flag** to customize an image capture into Raspberry Pi device. --rasp=true. This option provide th eoportunity to use a Raspberry Pi Camera Module to provide an interative demostration of image categorization. 
 
+<img src="https://storage.googleapis.com/tflitego/raspcap.gif?raw=true" width="600px">
+
 ---
 **Note:**
 
