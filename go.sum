@@ -1,4 +1,6 @@
-github.com/nbortolotti/tflitego v0.0.1 h1:vdd6Is5/jaojFr1XPO6tDxLMW1cnKICDDma/bd1UWwE=
-github.com/nbortolotti/tflitego v0.0.1/go.mod h1:yUb0wrUSjDY+pew1m0GyOXUs38dYaE/3zKLr3E5+LwE=
-github.com/nbortolotti/tflitego v0.0.2 h1:oxzGfpdCgNEb8t5XZHcScDj8DS5umgwQtAq1nJHAG0w=
-github.com/nbortolotti/tflitego v0.0.2/go.mod h1:yUb0wrUSjDY+pew1m0GyOXUs38dYaE/3zKLr3E5+LwE=
+github.com/dhowden/raspicam v0.0.0-20190323051945-60ef25a6629f h1:oT+wXjVnCofGqUTbPqRJKs3ne9vhxNumXk3PxMRkRTc=
+github.com/dhowden/raspicam v0.0.0-20190323051945-60ef25a6629f/go.mod h1:OMzt06oC5E5YW+9MyiiuX5oNfBGzpTeMRmGOK5OB8SE=
+github.com/nbortolotti/tflitego v0.0.3 h1:H+PuvZIkH4ffgbibHDbbrgtgrSNRgj81V8+9O6BU8ak=
+github.com/nbortolotti/tflitego v0.0.3/go.mod h1:uIxrfFgDcD7DdBqDBJYAyB7XVQ5YMzWenpReDfnlVC4=
+github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646 h1:zYyBkD/k9seD2A7fsi6Oo2LfFZAehjjQMERAvZLEDnQ=
+github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646/go.mod h1:jpp1/29i3P1S/RLdc7JQKbRpFeM1dOBd8T9ki5s+AY8=
