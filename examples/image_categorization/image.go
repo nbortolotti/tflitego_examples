@@ -10,16 +10,18 @@ import (
 	"os"
 	"sort"
 
+	"github.com/dhowden/raspicam"
 	tflite "github.com/nbortolotti/tflitego"
-
 	"github.com/nfnt/resize"
 )
 
 func main() {
 	var modelPath, labelsPath, imagePath string
+	var raspCapture bool
 	flag.StringVar(&modelPath, "model", "models/mobilenet_v2_1.0_224_quant.tflite", "path to model file")
 	flag.StringVar(&labelsPath, "label", "models/labels_mobilenet_224.txt", "path to label file")
 	flag.StringVar(&imagePath, "image", "images/dog.png", "path to image file")
+	flag.BoolVar(&raspCapture, "rasp", false, "useful when is neede to activate image capture in raspberry-pi device")
 	flag.Parse()
 
 	labels, err := getLabels(labelsPath)
@@ -53,6 +55,13 @@ func main() {
 	input, err := interpreter.GetInputTensor(0)
 	if err != nil {
 		log.Fatal(err)
+	}
+
+	if raspCapture == true {
+		imagePath, err = captureImage("images/temp.jpg")
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 
 	ibuffer, err := imageToBuffer(imagePath, input)
@@ -91,6 +100,30 @@ func main() {
 type cResult struct {
 	score float64
 	index int
+}
+
+func captureImage(path string) (string, error) {
+	f, err := os.Create(path)
+	if err != nil {
+		return "", err
+	}
+	defer f.Close()
+
+	s := raspicam.NewStill()
+	s.Width = 244
+	s.Height = 244
+	s.Quality = 100
+	s.Encoding = 3
+
+	errCh := make(chan error)
+	go func() {
+		for x := range errCh {
+			fmt.Fprintf(os.Stderr, "%v\n", x)
+		}
+	}()
+	log.Println("Capturing image...")
+	raspicam.Capture(s, f, errCh)
+	return path, nil
 }
 
 // loadLabels
@@ -158,7 +191,7 @@ func getResults(outputSize int, b []byte) []cResult {
 	results := []cResult{}
 	for i := 0; i < outputSize; i++ {
 		score := float64(b[i]) / 255.0
-		if score < 0.2 {
+		if score < 0.4 {
 			continue
 		}
 		results = append(results, cResult{score: score, index: i})
