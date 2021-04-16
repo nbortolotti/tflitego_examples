@@ -60,6 +60,9 @@ func main() {
 
 	newspecie := []float32{7.9, 3.8, 6.4, 2.0}
 	input, err := interpreter.GetInputTensor(0)
+	if err != nil {
+		log.Fatal("cannot get input tensor", err)
+	}
 	input.SetFloat32(newspecie)
 
 	status = interpreter.Invoke()
@@ -67,7 +70,10 @@ func main() {
 		log.Println("invoke interpreter failed")
 	}
 
-	output := interpreter.GetOutputTensor(0)
+	output,err := interpreter.GetOutputTensor(0)
+	if err != nil {
+		log.Fatal("cannot get output tensor", err)
+	}
 	out := output.OperateFloat32()
 	fmt.Println(topSpecie(out))
 
