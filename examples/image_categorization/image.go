@@ -30,16 +30,25 @@ func main() {
 	}
 
 	model, err := tflite.NewModelFromFile(modelPath)
+	if err != nil {
+		log.Fatal("cannot create new model from file", err)
+	}
 	defer model.Delete()
 	if model == nil {
 		log.Fatal("cannot load model")
 	}
 
 	options, err := tflite.NewInterpreterOptions()
+	if err != nil {
+		log.Fatal("cannot create new interpreter options", err)
+	}
 	options.SetNumThread(4)
 	defer options.Delete()
 
 	interpreter, err := tflite.NewInterpreter(model, options)
+	if err != nil {
+		log.Fatal("cannot create new interpreter", err)
+	}
 	defer interpreter.Delete()
 	if interpreter == nil {
 		log.Println("cannot create interpreter")
@@ -57,7 +66,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	if raspCapture == true {
+	if raspCapture {
 		imagePath, err = captureImage("images/temp.jpg")
 		if err != nil {
 			log.Fatal(err)
@@ -77,7 +86,10 @@ func main() {
 		return
 	}
 
-	output := interpreter.GetOutputTensor(0)
+	output, err := interpreter.GetOutputTensor(0)
+	if err != nil {
+		log.Fatal("cannot get input tensor", err)
+	}
 	outputSize := output.Dim(output.NumDims() - 1)
 	b := make([]byte, outputSize)
 

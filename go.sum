@@ -1,6 +1,6 @@
 github.com/dhowden/raspicam v0.0.0-20190323051945-60ef25a6629f h1:oT+wXjVnCofGqUTbPqRJKs3ne9vhxNumXk3PxMRkRTc=
 github.com/dhowden/raspicam v0.0.0-20190323051945-60ef25a6629f/go.mod h1:OMzt06oC5E5YW+9MyiiuX5oNfBGzpTeMRmGOK5OB8SE=
-github.com/nbortolotti/tflitego v0.0.3 h1:H+PuvZIkH4ffgbibHDbbrgtgrSNRgj81V8+9O6BU8ak=
-github.com/nbortolotti/tflitego v0.0.3/go.mod h1:uIxrfFgDcD7DdBqDBJYAyB7XVQ5YMzWenpReDfnlVC4=
+github.com/nbortolotti/tflitego v0.1.0-alpha h1:YZ9+YtJDpPslRwAIKsFCxF/Pe1IrWPm/AGr80bOaY3w=
+github.com/nbortolotti/tflitego v0.1.0-alpha/go.mod h1:6kDnQMB3QUOGHw3Xy7YdNoOyCssf+qLilqbLF7SKzb4=
 github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646 h1:zYyBkD/k9seD2A7fsi6Oo2LfFZAehjjQMERAvZLEDnQ=
 github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646/go.mod h1:jpp1/29i3P1S/RLdc7JQKbRpFeM1dOBd8T9ki5s+AY8=
