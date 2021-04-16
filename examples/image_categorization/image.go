@@ -26,24 +26,26 @@ func main() {
 
 	labels, err := getLabels(labelsPath)
 	if err != nil {
-		log.Fatal(err)
+		log.Println("cannot get labels: ", err)
 	}
 
 	model, err := tflite.NewModelFromFile(modelPath)
 	defer model.Delete()
-	if model == nil {
-		log.Fatal("cannot load model")
+	if err != nil {
+		log.Fatal("cannot create new model from file", err)
 	}
 
 	options, err := tflite.NewInterpreterOptions()
-	options.SetNumThread(4)
 	defer options.Delete()
+	if err != nil {
+		log.Fatal("cannot create new interpreter options", err)
+	}
+	options.SetNumThread(4)
 
 	interpreter, err := tflite.NewInterpreter(model, options)
 	defer interpreter.Delete()
-	if interpreter == nil {
-		log.Println("cannot create interpreter")
-		return
+	if err != nil {
+		log.Fatal("cannot create new interpreter", err)
 	}
 
 	status := interpreter.AllocateTensors()
@@ -54,19 +56,19 @@ func main() {
 
 	input, err := interpreter.GetInputTensor(0)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("cannot get input tensor:", err)
 	}
 
-	if raspCapture == true {
+	if raspCapture {
 		imagePath, err = captureImage("images/temp.jpg")
 		if err != nil {
-			log.Fatal(err)
+			log.Println("cannot capture image: ", err)
 		}
 	}
 
 	ibuffer, err := imageToBuffer(imagePath, input)
 	if err != nil {
-		log.Fatal(err)
+		log.Println("cannot apply image to bugger:", err)
 	}
 
 	input.FromBuffer(ibuffer)
@@ -77,7 +79,10 @@ func main() {
 		return
 	}
 
-	output := interpreter.GetOutputTensor(0)
+	output, err := interpreter.GetOutputTensor(0)
+	if err != nil {
+		log.Println("cannot get output tensor", err)
+	}
 	outputSize := output.Dim(output.NumDims() - 1)
 	b := make([]byte, outputSize)
 
