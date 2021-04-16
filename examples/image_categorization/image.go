@@ -30,6 +30,9 @@ func main() {
 	}
 
 	model, err := tflite.NewModelFromFile(modelPath)
+	if err != nil {
+		log.Fatal("cannot create new model from file", err)
+	}
 	defer model.Delete()
 	if err != nil {
 		log.Fatal("cannot create new model from file", err)
@@ -43,6 +46,9 @@ func main() {
 	options.SetNumThread(4)
 
 	interpreter, err := tflite.NewInterpreter(model, options)
+	if err != nil {
+		log.Fatal("cannot create new interpreter", err)
+	}
 	defer interpreter.Delete()
 	if err != nil {
 		log.Fatal("cannot create new interpreter", err)
